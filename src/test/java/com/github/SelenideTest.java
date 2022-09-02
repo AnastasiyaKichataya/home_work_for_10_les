@@ -12,16 +12,22 @@ import static org.openqa.selenium.By.linkText;
 
 public class SelenideTest {
 
+    private static final String mainUrl = "https://github.com/";
+    private static final String searchClass = ".header-search-input";
+    private static final String repo = "qa-guru/qa_guru_14_10";
+    private static final String issue = "Issue for Autotest";
+    private static final String tabIssueId = "#issues-tab";
+
     @Test
     public void issuesSearchTest() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        open("https://github.com/");
-        $(".header-search-input").click();
-        $(".header-search-input").sendKeys("qa-guru/qa_guru_14_10");
-        $(".header-search-input").submit();
-        $(linkText("qa-guru/qa_guru_14_10")).click();
-        $("#issues-tab").click();
-        $(withText("Issue for Autotest")).should(Condition.exist);
+        open(mainUrl);
+        $(searchClass).click();
+        $(searchClass).sendKeys(repo);
+        $(searchClass).submit();
+        $(linkText(repo)).click();
+        $(tabIssueId).click();
+        $(withText(issue)).should(Condition.exist);
     }
 }
