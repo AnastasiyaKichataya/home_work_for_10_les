@@ -29,15 +29,17 @@ public class LambdaStepsTest {
             $(searchClass).click();
             $(searchClass).sendKeys(repo);
             $(searchClass).submit();
-        } );
+        });
         step("Кликаем по ссылке репозитория " + repo, () -> {
             $(linkText(repo)).click();
         });
         step("Открываем вкладку Issues", () -> {
             $(tabIssueId).click();
         });
-        step("Проверяем наличие Issue с названием " + issue, () ->{
+        step("Проверяем наличие Issue с названием " + issue, () -> {
             $(withText(issue)).should(Condition.exist);
         });
     }
+
+
 }
